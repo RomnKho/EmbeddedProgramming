@@ -33,7 +33,7 @@ void adc_init(void);
 void adc_characterize(void);
 
 /*
- *
+ * @brief Function that read and makes the average of 'no_samples' reads
  */
 void read_adc_multisampling(uint16_t no_samples);
 
