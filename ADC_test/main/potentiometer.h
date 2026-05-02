@@ -31,7 +31,6 @@ bool adc_init(gpio_num_t num_gpio);
 
 /*
  * @brief Function that characterizes the ADC channel
- * @return 
  */
 void adc_characterize(void);
 
