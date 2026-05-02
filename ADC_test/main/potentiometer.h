@@ -29,12 +29,14 @@ void adc_init(void);
 
 /*
  * @brief Function that characterizes the ADC channel
+ * @return 
  */
 void adc_characterize(void);
 
 /*
  * @brief Function that read and makes the average of 'no_samples' reads
+ * @param[in] no_samples => number of samples wanted, *adc_reading_output and *mV pointers to potentiometer info
  */
-void read_adc_multisampling(uint16_t no_samples);
+void read_adc_multisampling(uint16_t no_samples, uint32_t *adc_reading_output, uint32_t *mV);
 
 #endif

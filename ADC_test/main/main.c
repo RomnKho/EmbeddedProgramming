@@ -12,6 +12,8 @@
 
 #define NO_SAMPLES      64
 
+static uint32_t adc_reading;
+static uint32_t mV;
 
 void app_main(void)
 {
@@ -21,7 +23,8 @@ void app_main(void)
 
     for(;;)
     {     
-        read_adc_multisampling(NO_SAMPLES);
+        read_adc_multisampling(NO_SAMPLES, &adc_reading, &mV);
+        printf("Raw: %lu\tVoltage: %lu mV\n", adc_reading, mV);
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
