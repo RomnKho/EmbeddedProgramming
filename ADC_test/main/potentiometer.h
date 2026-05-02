@@ -8,6 +8,7 @@
 #ifndef POTENTIOMETER_H
 #define POTENTIOMETER_H
 
+#include "driver/gpio.h"
 #include "esp_adc_cal.h"
 
 /*
@@ -23,9 +24,11 @@ void print_char_val_type(esp_adc_cal_value_t val_type);
 
 /*
  * @brief Function that initializes the potentioemeter
+ * @todo change void parameter to channel and make switch statement 
+ *       Better if someone wants to use more than one channel
  */
 
-void adc_init(void);
+bool adc_init(gpio_num_t num_gpio);
 
 /*
  * @brief Function that characterizes the ADC channel

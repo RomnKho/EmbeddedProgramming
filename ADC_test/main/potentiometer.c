@@ -5,6 +5,7 @@
  * @brief   Implementation file for potentiometers
  */
 
+#include "driver/gpio.h" 
 #include "driver/adc.h"         // Implementes the adc channels
 #include "esp_adc_cal.h"        // Implements the calibration of the adc
 #include "potentiometer.h"
@@ -13,11 +14,11 @@
 
 static const adc_bits_width_t   bit_width   = ADC_WIDTH_BIT_12; // if adc2, the bid width has to be specified 
                                                                 // each time adc2_get_raw() si called
-static const adc1_channel_t     channel     = ADC_CHANNEL_0;    // adc1_channel_0 => gpio 36
 static const adc_atten_t        attenuator  = ADC_ATTEN_DB_12;  // For potentiometers => atten. 150mV - 2450 mV
 static const adc_unit_t         unit        = ADC_UNIT_1;
 
-static esp_adc_cal_characteristics_t *adc_chars;                // Calibration characteristics
+static adc1_channel_t                   channel;
+static esp_adc_cal_characteristics_t    *adc_chars;             // Calibration characteristics
 
 void check_efuse(void)
 {
@@ -56,11 +57,67 @@ void print_char_val_type(esp_adc_cal_value_t val_type)
     }
 }
 
-void adc_init(void)
+bool adc_init(gpio_num_t num_gpio)
 {
-     // Configure the ADC
-    adc1_config_width(bit_width);
-    adc1_config_channel_atten(channel, attenuator);
+    static bool b_correct_gpio = true;
+
+    switch(num_gpio)
+    {
+        case GPIO_NUM_32:
+            printf("Using ADC1_CHANNEL_4\n");
+            channel = ADC1_CHANNEL_4;
+            break;
+
+        case GPIO_NUM_33:
+            printf("Using ADC1_CHANNEL_5\n");
+            channel = ADC1_CHANNEL_5;
+            break;
+
+        case GPIO_NUM_34:
+            printf("Using ADC1_CHANNEL_6\n");
+            channel = ADC1_CHANNEL_6;
+            break;
+
+        case GPIO_NUM_35:
+            printf("Using ADC1_CHANNEL_7\n");
+            channel = ADC1_CHANNEL_7;
+            break;
+
+        case GPIO_NUM_36:
+            printf("Using ADC1_CHANNEL_0\n");
+            channel = ADC1_CHANNEL_0;
+            break;
+
+        case GPIO_NUM_37:
+            printf("Using ADC1_CHANNEL_1\n");
+            channel = ADC1_CHANNEL_1;
+            break;
+
+        case GPIO_NUM_38:
+            printf("Using ADC1_CHANNEL_2\n");
+            channel = ADC1_CHANNEL_2;
+            break;
+
+        case GPIO_NUM_39:
+            printf("Using ADC1_CHANNEL_3\n");
+            channel = ADC1_CHANNEL_3;
+            break;
+
+        default:
+            printf("Please, introduce an adc1 gpio (32-39)\n");
+            b_correct_gpio = false;
+            break;
+    }
+
+    if (b_correct_gpio == true)
+    {
+        // Configure the ADC
+        adc1_config_width(bit_width);
+        adc1_config_channel_atten(channel, attenuator);
+        return true;
+    }
+
+    return false;
 }
 
 void adc_characterize(void)
