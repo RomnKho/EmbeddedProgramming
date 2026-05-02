@@ -13,7 +13,7 @@
 
 static const adc_bits_width_t   bit_width   = ADC_WIDTH_BIT_12; // if adc2, the bid width has to be specified 
                                                                 // each time adc2_get_raw() si called
-static const adc1_channel_t     channel    = ADC_CHANNEL_0;     // adc1_channel_0 => gpio 36
+static const adc1_channel_t     channel     = ADC_CHANNEL_0;    // adc1_channel_0 => gpio 36
 static const adc_atten_t        attenuator  = ADC_ATTEN_DB_12;  // For potentiometers => atten. 150mV - 2450 mV
 static const adc_unit_t         unit        = ADC_UNIT_1;
 
