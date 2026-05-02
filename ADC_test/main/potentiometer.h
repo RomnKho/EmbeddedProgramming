@@ -23,9 +23,8 @@ void check_efuse(void);
 void print_char_val_type(esp_adc_cal_value_t val_type);
 
 /*
- * @brief Function that initializes the potentioemeter
- * @todo change void parameter to channel and make switch statement 
- *       Better if someone wants to use more than one channel
+ * @brief Function that initializes the potentiometer
+ * @param[in] num_gpio => gpio_number to be used
  */
 
 bool adc_init(gpio_num_t num_gpio);
