@@ -19,7 +19,7 @@ static uint32_t mV;
 
 void app_main(void)
 {
-    check_efuse();
+    adc_check_efuse();
     bool init_correct = adc_init(pot_gpio);
 
     if(init_correct == false)
@@ -31,7 +31,7 @@ void app_main(void)
 
     for(;;)
     {     
-        read_adc_multisampling(NO_SAMPLES, &adc_reading, &mV);
+        adc_read_multisampling(NO_SAMPLES, &adc_reading, &mV);
         printf("Raw: %lu\tVoltage: %lu mV\n", adc_reading, mV);
         vTaskDelay(pdMS_TO_TICKS(100));
     }

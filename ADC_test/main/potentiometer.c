@@ -20,7 +20,7 @@ static const adc_unit_t         unit        = ADC_UNIT_1;
 static adc1_channel_t                   channel;
 static esp_adc_cal_characteristics_t    *adc_chars;             // Calibration characteristics
 
-void check_efuse(void)
+void adc_check_efuse(void)
 {
     if(esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_TP) == ESP_OK)
     {
@@ -41,7 +41,7 @@ void check_efuse(void)
     }
 }
 
-void print_char_val_type(esp_adc_cal_value_t val_type)
+void adc_print_char_val_type(esp_adc_cal_value_t val_type)
 {
     if(val_type == ESP_ADC_CAL_VAL_EFUSE_TP)
     {
@@ -128,7 +128,7 @@ void adc_characterize(void)
     print_char_val_type(val_type);
 }
 
-void read_adc_multisampling(uint16_t no_samples, uint32_t *adc_reading_output, uint32_t *mV_output)
+void adc_read_multisampling(uint16_t no_samples, uint32_t *adc_reading_output, uint32_t *mV_output)
 {
     uint32_t adc_reading_input = 0;
     static uint32_t mV_input = 0;

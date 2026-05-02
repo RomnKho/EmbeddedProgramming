@@ -12,15 +12,15 @@
 #include "esp_adc_cal.h"
 
 /*
- * @brief Function that prints wheter the esp32 has eFuse Two Point and Vref burned in 
+ * @brief Function that prints whether the esp32 has eFuse Two Point and Vref burned in 
  */
-void check_efuse(void);
+void adc_check_efuse(void);
 
 /*
  * @brief Function that prints the Calibration system used for the potentiometer
  * @param[in] Calibration type 
  */
-void print_char_val_type(esp_adc_cal_value_t val_type);
+void adc_print_char_val_type(esp_adc_cal_value_t val_type);
 
 /*
  * @brief Function that initializes the potentiometer
@@ -38,6 +38,6 @@ void adc_characterize(void);
  * @brief Function that read and makes the average of 'no_samples' reads
  * @param[in] no_samples => number of samples wanted, *adc_reading_output and *mV pointers to potentiometer info
  */
-void read_adc_multisampling(uint16_t no_samples, uint32_t *adc_reading_output, uint32_t *mV);
+void adc_read_multisampling(uint16_t no_samples, uint32_t *adc_reading_output, uint32_t *mV);
 
 #endif
